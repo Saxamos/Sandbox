@@ -1,0 +1,9 @@
+tace_detection/octo/*
+tace_detection/pics/*
+.DS_Store
+.idea
+__pycache__
+tace_detection/utils/secret_octopod.py
+IP_DSF
+proba_calibrator/gif
+reinforcement
