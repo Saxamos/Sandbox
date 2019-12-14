@@ -5,13 +5,14 @@ import face_recognition
 import pandas as pd
 import requests
 
+from tace_detection import detector_path
 from tace_detection.utils.octopod_info import get_octopod_info, base_octopod_url, token
 from tace_detection.utils.preprocess_known_faces import _create_known_face_name_and_encoding
 
 FONT = cv2.FONT_HERSHEY_DUPLEX
 
 process_this_frame = True
-known_face_names, known_face_encodings = _create_known_face_name_and_encoding('./octo/')
+known_face_names, known_face_encodings = _create_known_face_name_and_encoding(detector_path / 'octo')
 video_capture = cv2.VideoCapture(0)
 detected_octo = pd.DataFrame(columns=['NICKNAME', 'ID', 'TACE'])
 df_octo = get_octopod_info()

@@ -1,10 +1,11 @@
 import cv2
 import face_recognition
 
+from tace_detection import detector_path
 from tace_detection.utils.preprocess_known_faces import _create_known_face_name_and_encoding
 
 process_this_frame = True
-known_face_names, known_face_encodings = _create_known_face_name_and_encoding('./pics/')
+known_face_names, known_face_encodings = _create_known_face_name_and_encoding(detector_path / 'pics')
 video_capture = cv2.VideoCapture(0)
 
 while True:
