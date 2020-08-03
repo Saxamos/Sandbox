@@ -13,7 +13,7 @@ for dir_path in dir_list:
     print(dir_path)
 
     ### csv
-    csv_path = [f for f in dir_list[0].iterdir() if f.suffix == '.csv'][0].as_posix()
+    csv_path = [f for f in dir_path.iterdir() if f.suffix == '.csv'][0].as_posix()
     csv_file = open(csv_path, 'r')
     reader = csv.reader(csv_file)
     next(reader)
@@ -39,17 +39,17 @@ for dir_path in dir_list:
         i += 1
 
     ### song
-    sound_path = [f for f in dir_list[0].iterdir() if f.suffix == '.mp4' and 'short' not in f.as_posix()][0].as_posix()
+    sound_path = [f for f in dir_path.iterdir() if f.suffix == '.mp4' and 'short' not in f.as_posix()][0].as_posix()
     sound = AudioSegment.from_file(sound_path)
     awesome = sound[filtered_times[0][0]:filtered_times[0][1]]
     for start, end in filtered_times[1:]:
         awesome.append(sound[start:end], crossfade=FADING_TIME)
     awesome.fade_out(FADING_TIME)
     # play(awesome)
-    awesome.export(dir_path / 'awesome.mp3', format='mp3')
+    awesome.export((dir_path / 'awesome.mp3').as_posix(), format='mp3')
 
     ### video
-    video_path = [f for f in dir_list[0].iterdir() if f.suffix == '.mp4' and 'short' in f.as_posix()][0].as_posix()
+    video_path = [f for f in dir_path.iterdir() if f.suffix == '.mp4' and 'short' in f.as_posix()][0].as_posix()
     video = mpe.VideoFileClip(video_path)
     # final_audio = mpe.CompositeAudioClip([video.audio, audio])  ### to add ambiance sound to original sound
     audio = mpe.AudioFileClip((dir_path / 'awesome.mp3').as_posix())
