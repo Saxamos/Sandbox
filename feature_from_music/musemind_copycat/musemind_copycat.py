@@ -14,7 +14,7 @@ def main():
 
     for dir_path in dir_list:
         print(dir_path)
-        # if 'club_med' not in dir_path.as_posix():
+        # if 'guerlain' not in dir_path.as_posix():
         #     continue
         shot_times = _read_shot_times_from_csv_and_convert_to_ms(dir_path)
         reduced_times = _reduce_adjacent_times(shot_times)
@@ -71,6 +71,8 @@ def _replace_too_small_intervals(reduced_times, min_interval_size):
     start, end = reduced_times[0]
     if end - start < min_interval_size:
         filtered_times[0] = filtered_times[0][0] - (end - start), filtered_times[0][1]
+    else:
+        filtered_times = [(start, end)] + filtered_times
     return filtered_times
 
 
