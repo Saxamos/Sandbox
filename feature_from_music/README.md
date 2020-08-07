@@ -23,6 +23,8 @@
 
 - From audio get key moment
     - https://www.kaggle.com/pray199/spoken-languange-visualization
+    - https://www.kaggle.com/c/birdsong-recognition/discussion/172573
+    - https://medium.com/prathena/the-dummys-guide-to-mfcc-aceab2450fd
 
 
 # Mail from MuseMind

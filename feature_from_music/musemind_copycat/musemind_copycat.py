@@ -5,8 +5,8 @@ import moviepy.editor as mpe
 from pydub import AudioSegment
 
 BASE_PATH = Path('musemind_copycat/data/')
-MIN_INTERVAL_SIZE = 500
-FADING_TIME = 300
+MIN_INTERVAL_SIZE = 2000
+FADING_TIME = 100
 
 
 def main():
@@ -14,11 +14,13 @@ def main():
 
     for dir_path in dir_list:
         print(dir_path)
-        # if 'guerlain' not in dir_path.as_posix():
-        #     continue
+        if 'nissan' not in dir_path.as_posix():
+            continue
         shot_times = _read_shot_times_from_csv_and_convert_to_ms(dir_path)
         reduced_times = _reduce_adjacent_times(shot_times)
         filtered_times = _replace_too_small_intervals(reduced_times, MIN_INTERVAL_SIZE)
+        # TODO : prendre last shot time, faire durer plus l'avant dernier shot et fixer l'audio du dernier shot !!
+        # TODO : détecter segments avec paroles
         _build_and_save_reduced_audio(dir_path, filtered_times)
         _merge_and_save_reduced_video_and_audio(dir_path)
 
@@ -80,9 +82,9 @@ def _build_and_save_reduced_audio(dir_path, filtered_times):
     full_video_path = [f for f in dir_path.iterdir() if f.suffix == '.mp4' and 'result' not in f.as_posix()
                        and 'short' not in f.as_posix()][0].as_posix()
     audio = AudioSegment.from_file(full_video_path)
-    reduced_audio = audio[filtered_times[0][0]:filtered_times[0][1]]
+    reduced_audio = audio[filtered_times[0][0]:filtered_times[0][1] + FADING_TIME]
     for start, end in filtered_times[1:]:
-        reduced_audio = reduced_audio.append(audio[start:end], crossfade=FADING_TIME)
+        reduced_audio = reduced_audio.append(audio[start:end + FADING_TIME], crossfade=FADING_TIME)
     reduced_audio.export((dir_path / 'reduced_audio.mp3').as_posix(), format='mp3')
 
 
