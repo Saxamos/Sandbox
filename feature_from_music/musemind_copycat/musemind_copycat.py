@@ -51,15 +51,15 @@ def _read_shot_times_from_csv_and_convert_to_ms(dir_path):
 
 def _reduce_adjacent_times(pydub_times):
     i = 0
-    filtered_times = []
+    reduced_times = []
     while i < len(pydub_times):
         start_index = i
         while i + 1 < len(pydub_times) and pydub_times[i + 1][0] - pydub_times[i][1] < 11:
             i += 1
         start, end = pydub_times[start_index][0], pydub_times[i][1]
-        filtered_times.append((start, end))
+        reduced_times.append((start, end))
         i += 1
-    return filtered_times
+    return reduced_times
 
 
 def _replace_too_small_intervals(reduced_times, min_interval_size):
