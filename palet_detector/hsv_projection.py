@@ -26,5 +26,5 @@ gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 cv2.imwrite('./result/hsv.png', gray)
 
 ## Eventually plot it
-plt.imshow(img)
+plt.imshow(green)
 plt.show()
