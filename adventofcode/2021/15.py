@@ -35,7 +35,10 @@ while turn < 30000001:
         current_number = turn - 1 - number_turn_apparition_list[previous_number][-2]
 
     if len(number_turn_apparition_list[current_number]):
-        number_turn_apparition_list[current_number] = [number_turn_apparition_list[current_number][-1], turn]
+        number_turn_apparition_list[current_number] = [
+            number_turn_apparition_list[current_number][-1],
+            turn,
+        ]
     else:
         number_turn_apparition_list[current_number] += [turn]
 

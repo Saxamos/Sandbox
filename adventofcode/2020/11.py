@@ -17,7 +17,11 @@ def update_rule_1(seat_map: List[List[str]]) -> List[List[str]]:
             n_occupied = 0
             for r, c in AROUND:
                 try:
-                    if row + r >= 0 and col + c >= 0 and seat_map[row + r][col + c] == "#":
+                    if (
+                        row + r >= 0
+                        and col + c >= 0
+                        and seat_map[row + r][col + c] == "#"
+                    ):
                         n_occupied += 1
                 except IndexError:
                     pass

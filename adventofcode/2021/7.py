@@ -1,4 +1,5 @@
 import numpy as np
+
 puzzle = list(map(int, open("7.txt").read().split(",")))
 
 # 1

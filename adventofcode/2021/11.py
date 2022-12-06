@@ -35,7 +35,7 @@ while True:
                     grid[xs[0] + n[0], ys[0] + n[1]] += 1
         xs, ys = np.where(grid == 10)
     solution_2 += 1
-    if flash == grid.shape[0]*grid.shape[1]:
+    if flash == grid.shape[0] * grid.shape[1]:
         break
 
 

@@ -45,6 +45,7 @@ def propagate(low_cood, grid, memory):
 
     return memory
 
+
 candidate = []
 for low_cood in low_coods:
     memory = propagate(low_cood, grid, np.zeros(grid.shape))

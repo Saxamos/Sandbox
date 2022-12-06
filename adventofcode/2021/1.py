@@ -25,4 +25,3 @@ while i < len(entries):
     i += 1
 
 print("solution 2 is:", increase_count)
-

@@ -35,11 +35,21 @@ neighbors_tbrl = {k: [0, 0, 0, 0] for k in keys}
 for i in range(len(keys)):
     current_key = keys[i]
     tile = tile_dict[current_key]
-    current_top, current_bot, current_right, current_left = tile[0], tile[-1], tile[:, -1], tile[:, 0]
+    current_top, current_bot, current_right, current_left = (
+        tile[0],
+        tile[-1],
+        tile[:, -1],
+        tile[:, 0],
+    )
     for key in keys:
         if key == current_key:
             continue
-        top, bot, right, left = tile_dict[key][0], tile_dict[key][-1], tile_dict[key][:, -1], tile_dict[key][:, 0]
+        top, bot, right, left = (
+            tile_dict[key][0],
+            tile_dict[key][-1],
+            tile_dict[key][:, -1],
+            tile_dict[key][:, 0],
+        )
         ret = None
 
         if _check(current_bot, top, numpy.flip(left), numpy.flip(bot), right):
@@ -85,8 +95,10 @@ for k, v in neighbors_tbrl.items():
         t, b, r, l = v
         break
 
+
 def _flip(fingerprint):
     return fingerprint[0], fingerprint[1], not fingerprint[2]
+
 
 def _convert(tbrl, rotation, is_flip):
     t, b, r, l = tbrl

@@ -6,7 +6,9 @@ puzzle = open("4.txt").read().split("\n\n")
 solution_1 = 0
 draws = puzzle[0]
 score_grids = np.zeros((len(puzzle[1:]), 5, 5), dtype=int)
-given_grids = np.array([np.fromstring(grid, dtype=int, sep='\n').reshape((5, 5)) for grid in puzzle[1:]])
+given_grids = np.array(
+    [np.fromstring(grid, dtype=int, sep="\n").reshape((5, 5)) for grid in puzzle[1:]]
+)
 found = False
 for draw in draws.split(","):
     score_grids[np.where(given_grids == int(draw))] = 1

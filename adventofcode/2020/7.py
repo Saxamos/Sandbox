@@ -14,7 +14,9 @@ for el in puzzle:
         continue
     else:
         first_color, contained_colors = el.split(" bags contain ")
-        color_dag[first_color] = {filter_color(color): int(color[0]) for color in contained_colors.split(", ")}
+        color_dag[first_color] = {
+            filter_color(color): int(color[0]) for color in contained_colors.split(", ")
+        }
 
 
 def recursively_find_colors(color: str, solution: set) -> None:

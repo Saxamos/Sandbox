@@ -50,7 +50,13 @@ mapping = {}
 already_taken = set()
 for i in reversed(range(len(patterns))):
     pattern_index = p_size.index(i)
-    candidate = list((set(range(20)) - set(patterns_index_not_comp_with_col_indexes[pattern_index]) - already_taken))[0]
+    candidate = list(
+        (
+            set(range(20))
+            - set(patterns_index_not_comp_with_col_indexes[pattern_index])
+            - already_taken
+        )
+    )[0]
     mapping[pattern_index] = candidate
     already_taken.add(candidate)
 

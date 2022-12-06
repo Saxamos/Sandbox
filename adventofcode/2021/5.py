@@ -10,14 +10,14 @@ for line in puzzle:
     x2, y2 = list(map(int, xy2.split(",")))
     if x1 == x2:
         if y1 < y2:
-            grid[x1, y1:y2+1] += 1
+            grid[x1, y1 : y2 + 1] += 1
         else:
-            grid[x1, y2:y1+1] += 1
+            grid[x1, y2 : y1 + 1] += 1
     elif y1 == y2:
         if x1 < x2:
-            grid[x1:x2+1, y1] += 1
+            grid[x1 : x2 + 1, y1] += 1
         else:
-            grid[x2:x1+1, y1] += 1
+            grid[x2 : x1 + 1, y1] += 1
 
 solution_1 = (grid > 1).sum()
 
@@ -29,14 +29,14 @@ for line in puzzle:
     x2, y2 = list(map(int, xy2.split(",")))
     if x1 == x2:
         if y1 < y2:
-            grid[x1, y1:y2+1] += 1
+            grid[x1, y1 : y2 + 1] += 1
         else:
-            grid[x1, y2:y1+1] += 1
+            grid[x1, y2 : y1 + 1] += 1
     elif y1 == y2:
         if x1 < x2:
-            grid[x1:x2+1, y1] += 1
+            grid[x1 : x2 + 1, y1] += 1
         else:
-            grid[x2:x1+1, y1] += 1
+            grid[x2 : x1 + 1, y1] += 1
     else:
 
         while True:

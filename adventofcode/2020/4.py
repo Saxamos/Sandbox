@@ -6,14 +6,18 @@ puzzle = open("4.txt").read().split("\n\n")
 solution_1 = 0
 REQUIRED_FIELDS = {"byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"}
 for passport in puzzle:
-    pp = {field.split(":")[0]: field.split(":")[1] for field in re.split("\n| ", passport)}
+    pp = {
+        field.split(":")[0]: field.split(":")[1] for field in re.split("\n| ", passport)
+    }
     if not REQUIRED_FIELDS - set(pp.keys()):
         solution_1 += 1
 
 # 2
 solution_2 = 0
 for passport in puzzle:
-    pp = {field.split(":")[0]: field.split(":")[1] for field in re.split("\n| ", passport)}
+    pp = {
+        field.split(":")[0]: field.split(":")[1] for field in re.split("\n| ", passport)
+    }
     if REQUIRED_FIELDS - set(pp.keys()):
         continue
     try:

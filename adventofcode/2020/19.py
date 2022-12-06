@@ -10,7 +10,9 @@ for el in rules:
     rules_list[int(splitted_rule[0])] = splitted_rule[1]
 
 
-def recursively_append(rules_list: List[str], rule_index: str, valid_patterns: List[str]) -> List[str]:
+def recursively_append(
+    rules_list: List[str], rule_index: str, valid_patterns: List[str]
+) -> List[str]:
     rule = rules_list[int(rule_index)]
     if "a" in rule:
         valid_patterns = [pat + "a" for pat in valid_patterns]
@@ -23,11 +25,15 @@ def recursively_append(rules_list: List[str], rule_index: str, valid_patterns: L
             for index in or_splitted_rule[0].split(" "):
                 valid_patterns = recursively_append(rules_list, index, valid_patterns)
             for index in or_splitted_rule[1].split(" "):
-                valid_patterns_1 = recursively_append(rules_list, index, valid_patterns_1)
+                valid_patterns_1 = recursively_append(
+                    rules_list, index, valid_patterns_1
+                )
             valid_patterns = valid_patterns + valid_patterns_1
         else:
             for index in rule.split(" "):
-                valid_patterns = recursively_append(rules_list, int(index), valid_patterns)
+                valid_patterns = recursively_append(
+                    rules_list, int(index), valid_patterns
+                )
     return valid_patterns
 
 
@@ -70,7 +76,10 @@ for text in texts:
         valid = True
         pattern_array = [patterns_42] * (n_pattern - i) + [patterns_31] * i
         for pattern_index, valid_patterns in enumerate(pattern_array):
-            if not text[pattern_index * chunk_size : (pattern_index + 1) * chunk_size] in valid_patterns:
+            if (
+                not text[pattern_index * chunk_size : (pattern_index + 1) * chunk_size]
+                in valid_patterns
+            ):
                 valid = False
                 break
         if valid:

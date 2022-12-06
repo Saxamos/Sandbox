@@ -25,7 +25,7 @@ def _update_grid(input_grid: numpy.ndarray) -> numpy.ndarray:
             for z in range(len_z):
                 detected_neighbors = _detect_neighbors(input_grid, x, y, z)
                 if (input_grid[x, y, z] == 1 and detected_neighbors in [2, 3]) or (
-                        input_grid[x, y, z] == 0 and detected_neighbors == 3
+                    input_grid[x, y, z] == 0 and detected_neighbors == 3
                 ):
                     updated_grid[x, y, z] = 1
     return updated_grid
@@ -36,7 +36,9 @@ NEIGHBORS.remove((0, 0, 0))
 n_round = 6
 y_start = len(puzzle)
 x_start = len(puzzle[0])
-grid = numpy.zeros((x_start + n_round * 2, y_start + n_round * 2, 1 + n_round * 2), dtype=int)
+grid = numpy.zeros(
+    (x_start + n_round * 2, y_start + n_round * 2, 1 + n_round * 2), dtype=int
+)
 center = [el // 2 for el in grid.shape]
 # init grid
 for y, row in enumerate(puzzle, start=-4):
@@ -54,7 +56,10 @@ def _detect_neighbors(grid: numpy.ndarray, x: int, y: int, z: int, w: int) -> in
     detected_neighbors = 0
     for neighbor in NEIGHBORS:
         try:
-            if grid[x + neighbor[0], y + neighbor[1], z + neighbor[2], w + neighbor[3]] == 1:
+            if (
+                grid[x + neighbor[0], y + neighbor[1], z + neighbor[2], w + neighbor[3]]
+                == 1
+            ):
                 detected_neighbors += 1
         except:
             pass
@@ -69,16 +74,19 @@ def _update_grid(input_grid: numpy.ndarray) -> numpy.ndarray:
             for z in range(len_z):
                 for w in range(len_w):
                     detected_neighbors = _detect_neighbors(input_grid, x, y, z, w)
-                    if (input_grid[x, y, z, w] == 1 and detected_neighbors in [2, 3]) or (
-                            input_grid[x, y, z, w] == 0 and detected_neighbors == 3
-                    ):
+                    if (
+                        input_grid[x, y, z, w] == 1 and detected_neighbors in [2, 3]
+                    ) or (input_grid[x, y, z, w] == 0 and detected_neighbors == 3):
                         updated_grid[x, y, z, w] = 1
     return updated_grid
 
 
 NEIGHBORS = list(itertools.product(*[[-1, 0, 1], [-1, 0, 1], [-1, 0, 1], [-1, 0, 1]]))
 NEIGHBORS.remove((0, 0, 0, 0))
-grid = numpy.zeros((x_start + n_round * 2, y_start + n_round * 2, 1 + n_round * 2, 1 + n_round * 2), dtype=int)
+grid = numpy.zeros(
+    (x_start + n_round * 2, y_start + n_round * 2, 1 + n_round * 2, 1 + n_round * 2),
+    dtype=int,
+)
 center = [el // 2 for el in grid.shape]
 # init grid
 for y, row in enumerate(puzzle, start=-4):

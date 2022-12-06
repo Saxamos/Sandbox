@@ -19,7 +19,9 @@ Your puzzle input is 171309-643603."""
 
 
 def nb_of_psw(a, b):
-    return sum([1 for nb in range(a, b) if _has_consecutiv_double(nb) and _is_increasing(nb)])
+    return sum(
+        [1 for nb in range(a, b) if _has_consecutiv_double(nb) and _is_increasing(nb)]
+    )
 
 
 def _has_consecutiv_double(nb):

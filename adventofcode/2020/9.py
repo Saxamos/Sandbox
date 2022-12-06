@@ -12,7 +12,7 @@ def is_valid(number: int, list_25_previous: List[int]) -> bool:
 
 solution_1 = 0
 for i in range(25, len(puzzle)):
-    list_25_previous = puzzle[i - 25:i]
+    list_25_previous = puzzle[i - 25 : i]
     number = puzzle[i]
     if not is_valid(number, list_25_previous):
         solution_1 = number
@@ -22,9 +22,9 @@ for i in range(25, len(puzzle)):
 solution_2 = 0
 start, end = 0, 1
 while True:
-    contiguous_sum = sum(puzzle[start:end + 1])
+    contiguous_sum = sum(puzzle[start : end + 1])
     if contiguous_sum == solution_1:
-        solution_2 = min(puzzle[start:end + 1]) + max(puzzle[start:end + 1])
+        solution_2 = min(puzzle[start : end + 1]) + max(puzzle[start : end + 1])
         break
     elif contiguous_sum < solution_1:
         end += 1
